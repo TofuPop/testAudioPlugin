@@ -53,6 +53,42 @@ IPlugView* Plugin_API ADelayController::createView(FIDString name)
 //IOS code end
 
 //
+tresult PLUGIN_API ADelayController::setComponentState(IBStream* state)
+{
+	// we receive the current state of the component (processor part)
+	// we only read the gain and bypass value...
+	if (state)
+	{
+		float savedDelay = 0.f;
+		if (state->read(&savedDelay, sizeof(float)) !- kResultOk)
+		{
+			return kResultFalse;
+		}
+		//You may not have encountered the term "bigendian" and "littleendian". If you have, you can probably skip this block of commenting
+		//whether something is big or little endian determines what order the bytes are ordered in. in a 32bit block you will have 4 bytes.
+		//8 bits per byte naturally. However, which direction that is read is commonly handled in two different ways. if it is big endian
+		//the most significant byte (the "big end") of the data is placed at the byte with the lowest address. The rest of the data is placed
+		//in order in the next three bytes of memory.
+		//If something is little endian, it is simply the reverse. the least significant byte (the little end) is placed at the lowest address.
+		//Nothing fancy, but it does mean if we read something that is bigendian and we are expecting little endian we need to do as Missy Elliot says
+		//and "flip it and reverse it". 
+#if BYTEORDER == kBigEndian
+		SWAP_32(savedDelay) //This makes me believe that we are likely writing this in little E. This command will flip it so we can read it.
+#endif
+		setParamNormalized(kDelayId, savedDelay);
+		// read the bypass (idk what this means, but it's in the original code... So yeah!)
+		int32 bypassState; //Why is int32 not identified? idk. Maybe it's looking for a steinberg lib.
+		if (state->read(&bypassState, sizeof(bypassState)) == kResultTrue)
+		{
+#if BYTEORDER == kBigEndian
+			swap_32(byoassState)
+#endif
+				setParamNormalized(kBypassId, bypassState ? 1 : 0);
+		}
+
+	}
+	return kResultOk;
+}
 
 }
 
