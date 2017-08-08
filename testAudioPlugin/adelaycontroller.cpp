@@ -18,12 +18,15 @@
 #include "interappaudio/iosEditor.h"
 #endif
 
+using namespace Steinberg;
+using namespace Steinberg::Vst;
+
 namespace TofuPop{
 namespace Vst {
 
 //Currently I don't understand this tresult. It must be a type of some library/header that I haven't written yet. 
 //I imagine ADelayController is a type defined in the adelaycontroller.h file.
-tresult PLUGIN_API ADelayController::initialize(FUnknown* context)
+tresult PLUGIN_API ADelayController::initialize(FUnknown* context)//We will build this class later.
 {
 	tresult result = EditController::initialize(context);
 	if (result == kResultTrue)
@@ -32,7 +35,7 @@ tresult PLUGIN_API ADelayController::initialize(FUnknown* context)
 		//needs more exploration! I imagine as I keep coding this I will find some answers!
 		parameters.addParameter(STR16("Bypass"), 0, 1, 0, ParameterInfo::kCanAutomate | ParameterInfo::kIsBypass, kBypassId);
 
-		parameters.addParameter(STR16("Delay"), STR16("sec"), 0, 1, ParameterInfo::kCanAutomate, kDelayID); //I imagine the kDelayID stuff comes from adelayids.h
+		parameters.addParameter(STR16("Delay"), STR16("sec"), 0, 1, ParameterInfo::kCanAutomate, kDelayId); //I imagine the kDelayID stuff comes from adelayids.h
 	}
 	return kResultTrue; //idk...
 }
@@ -60,7 +63,7 @@ tresult PLUGIN_API ADelayController::setComponentState(IBStream* state)
 	if (state)
 	{
 		float savedDelay = 0.f;
-		if (state->read(&savedDelay, sizeof(float)) !- kResultOk)
+		if (state->read(&savedDelay, sizeof(float)) != kResultOk)
 		{
 			return kResultFalse;
 		}

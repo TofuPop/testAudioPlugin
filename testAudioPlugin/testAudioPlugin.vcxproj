@@ -116,10 +116,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="adelaycontroller.cpp" />
+    <ClCompile Include="adelayprocessor.cpp" />
+    <ClCompile Include="exampletest.cpp" />
+    <ClCompile Include="factory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="adelaycontroller.h" />
     <ClInclude Include="adelayids.h" />
+    <ClInclude Include="adelayprocessor.h" />
+    <ClInclude Include="exampletest.h" />
+    <ClInclude Include="version.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -18,12 +18,30 @@
     <ClCompile Include="adelaycontroller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="adelayprocessor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="exampletest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="factory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="adelaycontroller.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="adelayids.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="adelayprocessor.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exampletest.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="version.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

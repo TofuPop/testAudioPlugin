@@ -10,9 +10,11 @@
 #include <TargetConditionals.h>
 #endif
 
+using namespace Steinberg;
+
 namespace TofuPop
 {
-namespace VST
+namespace Vst
 {
 	class ADelayController : public Steinberg::Vst::EditController //I dislike this sort of declaration. But it will just have to do. 
 	{
